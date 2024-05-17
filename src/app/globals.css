@@ -1,52 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 1rem;
+    --background: rgb(255, 255, 255); /* Updated to match tree.com.sa pets background */
+    --foreground: rgb(128, 128, 128); /* Updated to match tree.com.sa pets text color */
+    --card: rgb(255, 255, 255); /* Assuming card background to match main background */
+    --card-foreground: rgb(128, 128, 128); /* Assuming card text to match main text color */
+    --popover: rgb(255, 255, 255); /* Assuming popover background to match main background */
+    --popover-foreground: rgb(128, 128, 128); /* Assuming popover text to match main text color */
+    --primary: rgb(114, 255, 19); /* Updated to match tree.com.sa pets button color */
+    --primary-foreground: rgb(128, 128, 128); /* Updated to match tree.com.sa pets button text color */
+    --secondary: 240 4.8% 95.9%; /* Keeping existing secondary color */
+    --secondary-foreground: 240 5.9% 10%; /* Keeping existing secondary foreground color */
+    --muted: 240 4.8% 95.9%; /* Keeping existing muted color */
+    --muted-foreground: 240 3.8% 46.1%; /* Keeping existing muted foreground color */
+    --accent: 240 4.8% 95.9%; /* Keeping existing accent color */
+    --accent-foreground: 240 5.9% 10%; /* Keeping existing accent foreground color */
+    --destructive: 0 84.2% 60.2%; /* Keeping existing destructive color */
+    --destructive-foreground: 0 0% 98%; /* Keeping existing destructive foreground color */
+    --border: 240 5.9% 90%; /* Keeping existing border color */
+    --input: 240 5.9% 90%; /* Keeping existing input color */
+    --ring: 240 5.9% 10%; /* Keeping existing ring color */
+    --radius: 1rem; /* Keeping existing radius */
   }
 
   .dark {
-    --background: 0 0% 9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --background: 0 0% 9%; /* Keeping existing dark theme background */
+    --foreground: 0 0% 98%; /* Keeping existing dark theme foreground */
+    --card: 0 0% 12%; /* Keeping existing dark theme card background */
+    --card-foreground: 0 0% 98%; /* Keeping existing dark theme card foreground */
+    --popover: 0 0% 12%; /* Keeping existing dark theme popover background */
+    --popover-foreground: 0 0% 98%; /* Keeping existing dark theme popover foreground */
+    --primary: 0 0% 98%; /* Keeping existing dark theme primary color */
+    --primary-foreground: 240 5.9% 10%; /* Keeping existing dark theme primary foreground */
+    --secondary: 240 3.7% 15.9%; /* Keeping existing dark theme secondary color */
+    --secondary-foreground: 0 0% 98%; /* Keeping existing dark theme secondary foreground */
+    --muted: 240 3.7% 15.9%; /* Keeping existing dark theme muted color */
+    --muted-foreground: 240 5% 64.9%; /* Keeping existing dark theme muted foreground */
+    --accent: 240 3.7% 15.9%; /* Keeping existing dark theme accent color */
+    --accent-foreground: 0 0% 98%; /* Keeping existing dark theme accent foreground */
+    --destructive: 0 62.8% 30.6%; /* Keeping existing dark theme destructive color */
+    --destructive-foreground: 0 0% 98%; /* Keeping existing dark theme destructive foreground */
+    --border: 240 3.7% 15.9%; /* Keeping existing dark theme border color */
+    --input: 240 3.7% 15.9%; /* Keeping existing dark theme input color */
+    --ring: 240 4.9% 83.9%; /* Keeping existing dark theme ring color */
   }
 }
 
@@ -69,8 +68,8 @@
 }
 
 :root {
-  --scrollbar-thumb-color: #ccc;
-  --scrollbar-thumb-hover-color: #aaa; 
+  --scrollbar-thumb-color: #ccc; /* Keeping existing scrollbar thumb color */
+  --scrollbar-thumb-hover-color: #aaa; /* Keeping existing scrollbar thumb hover color */
 }
 
 ::-webkit-scrollbar {
@@ -81,7 +80,7 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-color);
   border-radius: 999px;
-  transition: width 0.3s, height 0.3s, visibility 0.3s; 
+  transition: width 0.3s, height 0.3s, visibility 0.3s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
