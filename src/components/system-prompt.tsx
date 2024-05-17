@@ -6,13 +6,19 @@ import { toast } from "sonner";
 import { useDebounce } from "use-debounce";
 
 import { useHasMounted } from "@/lib/utils";
-import { ChatOptions } from "./chat/chat-options";
-import { Textarea } from "./ui/textarea";
+
+// Updated ChatOptions type to include language
+export interface ChatOptions {
+  systemPrompt: string;
+  temperature: number;
+  language: string; // Added language property
+}
 
 export interface SystemPromptProps {
   chatOptions: ChatOptions;
   setChatOptions: Dispatch<SetStateAction<ChatOptions>>;
 }
+
 export default function SystemPrompt({
   chatOptions,
   setChatOptions,
