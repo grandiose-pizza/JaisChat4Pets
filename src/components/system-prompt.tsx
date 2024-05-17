@@ -37,7 +37,7 @@ export default function SystemPrompt({
       setChatOptions({ ...chatOptions, systemPrompt: debouncedText });
       toast.success("System prompt updated", { duration: 1000 });
     }
-  }, [hasMounted, debouncedText]);
+  }, [hasMounted, debouncedText, systemPrompt, setChatOptions]);
 
   return (
     <div>
@@ -46,12 +46,12 @@ export default function SystemPrompt({
       </div>
 
       <div className="m-2">
-        <Textarea
+        <textarea
           className="resize-none bg-white/20 dark:bg-card/35"
           autoComplete="off"
           rows={7}
           value={text}
-          onChange={(e) => setText(e.currentTarget.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)}
           name="systemPrompt"
           placeholder="You are a helpful assistant."
         />
