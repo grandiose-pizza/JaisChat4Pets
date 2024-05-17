@@ -9,7 +9,7 @@ import useLocalStorageState from "use-local-storage-state";
 import { v4 as uuidv4 } from "uuid";
 
 import { ChatLayout } from "@/components/chat/chat-layout";
-import { ChatOptions } from "@/components/chat/chat-options";
+import { ChatOptions as SystemPromptChatOptions } from "@/components/system-prompt";
 import { basePath } from "@/lib/utils";
 
 interface ChatPageProps {
@@ -33,16 +33,14 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
       toast.error("Something went wrong: " + error);
     },
   });
-  const [chatOptions, setChatOptions] = useLocalStorageState<ChatOptions>(
-    "chatOptions",
-    {
-      defaultValue: {
-        selectedModel: "",
-        systemPrompt: "",
-        temperature: 0.9,
-      },
-    }
-  );
+  const [chatOptions, setChatOptions] = useLocalStorageState<SystemPromptChatOptions>("chatOptions", {
+    defaultValue: {
+      selectedModel: "",
+      systemPrompt: "",
+      temperature: 0.9,
+      language: "en", // Default language set to English
+    },
+  });
 
   React.useEffect(() => {
     if (chatId) {
