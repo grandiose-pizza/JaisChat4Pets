@@ -2,13 +2,10 @@
 
 import ClearChatsButton from "./settings-clear-chats";
 import SettingsThemeToggle from "./settings-theme-toggle";
-import SystemPrompt, { SystemPromptProps } from "./system-prompt";
+import SystemPrompt, { SystemPromptProps, ChatOptions } from "./system-prompt";
 import { Input } from "./ui/input";
 
-type ChatOptionsType = {
-  temperature: number;
-  language: string;
-};
+type ChatOptionsType = ChatOptions;
 
 interface LanguageToggleProps {
   chatOptions: ChatOptionsType;
