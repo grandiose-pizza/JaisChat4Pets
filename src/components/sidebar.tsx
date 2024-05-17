@@ -6,7 +6,7 @@ import { Message } from "ai/react";
 import Image from "next/image";
 
 import OllamaLogo from "../../public/ollama.png";
-import { ChatOptions } from "./chat/chat-options";
+import { ChatOptions } from "./system-prompt";
 import SidebarTabs from "./sidebar-tabs";
 import Link from "next/link";
 
