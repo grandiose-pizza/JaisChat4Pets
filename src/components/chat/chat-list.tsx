@@ -47,7 +47,7 @@ export default function ChatList({ messages, isLoading }: ChatListProps) {
             className="h-20 w-14 object-contain dark:invert"
           />
           <p className="text-center text-xl text-muted-foreground">
-            How can I help you today?
+            Woof woof!!! How can I help you today?
           </p>
         </div>
       </div>
