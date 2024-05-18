@@ -31,6 +31,7 @@ interface ChatTopbarProps {
   chatId?: string;
   setChatId: React.Dispatch<React.SetStateAction<string>>;
   messages: Message[];
+  detectedLanguage?: 'en' | 'ar'; // Optional prop for detected language
 }
 
 export default function ChatTopbar({
@@ -40,6 +41,7 @@ export default function ChatTopbar({
   chatId,
   setChatId,
   messages,
+  detectedLanguage, // Destructure detectedLanguage from props
 }: ChatTopbarProps) {
   const hasMounted = useHasMounted();
 
@@ -86,7 +88,7 @@ export default function ChatTopbar({
   const chatTokens = messages.length > 0 ? encodeChat(messages) : 0;
 
   return (
-    <div className="md:w-full flex px-4 py-4 items-center justify-between md:justify-center">
+    <div className={`md:w-full flex px-4 py-4 items-center justify-between md:justify-center ${detectedLanguage === 'ar' ? 'rtl' : ''}`}> {/* Apply RTL styling conditionally */}
       <Sheet>
         <SheetTrigger>
           <div className="flex items-center gap-2">

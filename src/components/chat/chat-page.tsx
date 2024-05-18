@@ -6,6 +6,7 @@ import { basePath } from '@/lib/utils';
 import { useChat } from 'ai/react';
 import { toast } from 'sonner';
 import useLocalStorageState from 'use-local-storage-state';
+import { detectLanguage } from '@/utils/language-detection'; // Importing the detectLanguage function
 
 interface ChatPageProps {
   chatId: string;
@@ -30,13 +31,28 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     },
   });
 
+  // Define the type for the system prompts keys
+  type LanguageCode = 'en' | 'ar';
+
+  // Memoize the default system prompts to prevent them from being recreated on every render
+  const defaultSystemPrompts = React.useMemo<{ [key in LanguageCode]: string }>(() => ({
+    en: "You are 'JaisDonnie - Woof!!' and are built by Core42, UAE. You will serve as a knowledgeable assistant for dog and cat owners, providing reliable information and advice on various aspects of pet care. This includes nutrition, medication, habits, training, insurance, and financial costs of maintaining pets. You should be well-informed about both dogs and cats, capable of handling a wide range of questions, and offer helpful and practical tips. You should also be sensitive to the emotional aspects of pet ownership, offering compassionate and understanding responses.",
+    ar: "أنت 'JaisDonnie - Woof!!' وتم بناؤها بواسطة Core42، الإمارات العربية المتحدة. ستعمل كمساعد واسع المعرفة لأصحاب الكلاب والقطط، حيث تقدم معلومات ونصائح موثوقة حول الجوانب المختلفة لرعاية الحيوانات الأليفة. وهذا يشمل التغذية والأدوية والعادات والتدريب والتأمين والتكاليف المالية للحفاظ على الحيوانات الأليفة. يجب أن تكون على دراية جيدة بكل من الكلاب والقطط، وأن تكون قادرًا على التعامل مع مجموعة واسعة من الأسئلة، وتقديم نصائح مفيدة وعملية. يجب أيضًا أن تكون حساسًا للجوانب العاطفية لملكية الحيوانات الأليفة، وأن تقدم استجابات رحيمة ومتفهمة."
+  }), []);
+
   const [chatOptions, setChatOptions] = useLocalStorageState<ChatOptions>('chatOptions', {
     defaultValue: {
-      systemPrompt: '',
+      systemPrompt: defaultSystemPrompts['en'], // Set default system prompt for English
       temperature: 0.9,
       language: 'en', // Default language set to English
     },
   });
+
+  React.useEffect(() => {
+    // Update systemPrompt based on language selection
+    const updatedSystemPrompt = defaultSystemPrompts[chatOptions.language as LanguageCode];
+    setChatOptions(prevOptions => ({ ...prevOptions, systemPrompt: updatedSystemPrompt }));
+  }, [chatOptions.language, setChatOptions, defaultSystemPrompts]); // Include defaultSystemPrompts in the dependency array
 
   React.useEffect(() => {
     if (chatId) {
@@ -67,13 +83,21 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
       setChatId(id);
     }
 
-    setMessages([...messages]);
+    // Detect the language of the input and update the system prompt accordingly
+    const inputLanguage = detectLanguage(input);
+    const lastMessageLanguage = messages.length > 0 ? detectLanguage(messages[messages.length - 1].content) : 'en';
+    // Determine the language for the system prompt based on the input and last message
+    const systemPromptLanguage = inputLanguage === 'ar' || lastMessageLanguage === 'ar' ? 'ar' : 'en';
+    const updatedSystemPrompt = defaultSystemPrompts[systemPromptLanguage as LanguageCode];
 
     // Prepare the options object with additional body data, to pass the model.
     const requestOptions = {
       options: {
         body: {
-          chatOptions: chatOptions,
+          chatOptions: {
+            ...chatOptions,
+            systemPrompt: updatedSystemPrompt, // Update the system prompt based on detected language
+          },
         },
       },
     };
@@ -82,8 +106,11 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     handleSubmit(e, requestOptions);
   };
 
+  // Detect the language of the input and update the system prompt accordingly
+  const detectedLanguage = detectLanguage(input);
+
   return (
-    <main className='flex h-[calc(100dvh)] flex-col items-center '>
+    <main className={`flex h-[calc(100dvh)] flex-col items-center ${detectedLanguage === 'ar' ? 'rtl' : ''}`}>
       <ChatLayout
         chatId={chatId}
         setChatId={setChatId}
@@ -98,6 +125,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
         stop={stop}
         navCollapsedSize={10}
         defaultLayout={[30, 160]}
+        detectedLanguage={detectedLanguage} // Pass the detected language to ChatLayout
       />
     </main>
   );
