@@ -150,6 +150,13 @@ export function Sidebar({
           </div>
         </Link>
       </div>
+      <Image
+        src="/assets/hero-image.webp"
+        alt="Hero Image"
+        width={500}
+        height={300}
+        layout="responsive"
+      />
       <SidebarTabs
         isLoading={isLoading}
         localChats={localChats}
