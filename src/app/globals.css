@@ -107,3 +107,12 @@
 .dark .sidebar {
   background: var(--sidebar-bg);
 }
+
+/* Custom styles for tablist to apply gradient background */
+.tablist {
+  background: var(--background-gradient);
+}
+
+.dark .tablist {
+  background: var(--background-gradient);
+}
