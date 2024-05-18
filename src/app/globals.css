@@ -116,3 +116,9 @@
 .dark .tablist {
   background: var(--background-gradient);
 }
+
+/* General panel styles for rounded corners and green shadow */
+.panel {
+  border-radius: var(--radius); /* Apply rounded corners using existing radius variable */
+  box-shadow: 0 4px 8px 0 var(--primary); /* Apply green shadow with slight offset and blur */
+}
