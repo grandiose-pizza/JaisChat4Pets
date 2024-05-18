@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: rgb(255, 255, 255); /* Updated to match tree.com.sa pets background */
+    --background-gradient: linear-gradient(180deg, rgba(204, 255, 204, 1) 0%, rgba(255, 255, 255, 1) 33%, rgba(255, 255, 255, 1) 66%, rgba(204, 255, 204, 1) 100%);
     --foreground: rgb(128, 128, 128); /* Updated to match tree.com.sa pets text color */
     --card: rgb(255, 255, 255); /* Assuming card background to match main background */
     --card-foreground: rgb(128, 128, 128); /* Assuming card text to match main text color */
@@ -24,6 +24,7 @@
     --input: 240 5.9% 90%; /* Keeping existing input color */
     --ring: 240 5.9% 10%; /* Keeping existing ring color */
     --radius: 1rem; /* Keeping existing radius */
+    --sidebar-bg: var(--background-gradient); /* Applying gradient to sidebar background */
   }
 
   .dark {
@@ -51,10 +52,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border: var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--background-gradient);
+    color: var(--foreground);
   }
 }
 
@@ -95,4 +97,28 @@
 
 .rtl {
   direction: rtl;
+}
+
+/* Custom sidebar styles to apply gradient background */
+.sidebar {
+  background: var(--sidebar-bg);
+}
+
+.dark .sidebar {
+  background: var(--sidebar-bg);
+}
+
+/* Custom styles for tablist to apply gradient background */
+.tablist {
+  background: var(--background-gradient);
+}
+
+.dark .tablist {
+  background: var(--background-gradient);
+}
+
+/* General panel styles for rounded corners and green shadow */
+.panel {
+  border-radius: var(--radius); /* Apply rounded corners using existing radius variable */
+  box-shadow: 0 4px 8px 0 var(--primary); /* Apply green shadow with slight offset and blur */
 }
