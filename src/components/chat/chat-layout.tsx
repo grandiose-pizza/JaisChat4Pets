@@ -11,6 +11,7 @@ interface ChatLayoutProps {
   defaultCollapsed?: boolean;
   navCollapsedSize: number;
   chatId: string;
+  detectedLanguage?: 'en' | 'ar'; // Optional prop for detected language
 }
 
 type MergedProps = ChatLayoutProps & ChatProps & ChatTopbarProps & { chatOptions: ChatOptions; setChatOptions: React.Dispatch<React.SetStateAction<ChatOptions>>; };
@@ -30,6 +31,7 @@ export function ChatLayout({
   setChatId,
   chatOptions,
   setChatOptions,
+  detectedLanguage, // Include detectedLanguage in the component props
 }: MergedProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -53,7 +55,7 @@ export function ChatLayout({
   }, []);
 
   return (
-    <div className="relative z-0 flex h-full w-full overflow-hidden">
+    <div className={`relative z-0 flex h-full w-full overflow-hidden ${detectedLanguage === 'ar' ? 'rtl' : ''}`}> {/* Apply RTL styling conditionally */}
       <div className="flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary md:w-[260px]">
         <Sidebar
           isCollapsed={isCollapsed}
@@ -77,6 +79,7 @@ export function ChatLayout({
           isLoading={isLoading}
           error={error}
           stop={stop}
+          detectedLanguage={detectedLanguage} // Pass detectedLanguage down to Chat component
         />
       </div>
     </div>

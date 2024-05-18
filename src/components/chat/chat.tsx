@@ -21,6 +21,7 @@ export interface ChatProps {
   isLoading: boolean;
   error: undefined | Error;
   stop: () => void;
+  detectedLanguage?: 'en' | 'ar'; // Optional prop for detected language
 }
 
 export interface ChatTopbarProps {
@@ -40,9 +41,10 @@ export default function Chat({
   setChatOptions,
   chatId,
   setChatId,
+  detectedLanguage, // Include detectedLanguage in the component props
 }: ChatProps & ChatTopbarProps) {
   return (
-    <div className="flex flex-col justify-between w-full h-full  ">
+    <div className={`flex flex-col justify-between w-full h-full ${detectedLanguage === 'ar' ? 'rtl' : ''}`}> {/* Apply RTL styling conditionally */}
       <ChatTopbar
         chatOptions={chatOptions}
         setChatOptions={setChatOptions}
@@ -50,11 +52,13 @@ export default function Chat({
         chatId={chatId}
         setChatId={setChatId}
         messages={messages}
+        detectedLanguage={detectedLanguage} // Pass detectedLanguage down to ChatTopbar component
       />
 
       <ChatList
         messages={messages}
         isLoading={isLoading}
+        detectedLanguage={detectedLanguage} // Pass detectedLanguage down to ChatList component
       />
 
       <ChatBottombar
@@ -64,6 +68,7 @@ export default function Chat({
         handleSubmit={handleSubmit}
         isLoading={isLoading}
         stop={stop}
+        detectedLanguage={detectedLanguage} // Pass detectedLanguage down to ChatBottombar component
       />
     </div>
   );
