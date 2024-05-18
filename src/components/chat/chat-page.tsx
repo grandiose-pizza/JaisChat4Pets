@@ -30,12 +30,12 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     },
   });
 
-  const [chatOptions, setChatOptions] = useLocalStorageState('chatOptions', {
+  const [chatOptions, setChatOptions] = useLocalStorageState<ChatOptions>('chatOptions', {
     defaultValue: {
       systemPrompt: '',
       temperature: 0.9,
       language: 'en', // Default language set to English
-    } as ChatOptions,
+    },
   });
 
   React.useEffect(() => {
@@ -88,7 +88,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
         chatId={chatId}
         setChatId={setChatId}
         chatOptions={chatOptions}
-        setChatOptions={setChatOptions}
+        setChatOptions={setChatOptions as React.Dispatch<React.SetStateAction<ChatOptions>>}
         messages={messages}
         input={input}
         handleInputChange={handleInputChange}
