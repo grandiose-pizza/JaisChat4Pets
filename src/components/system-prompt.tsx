@@ -39,23 +39,6 @@ export default function SystemPrompt({
     }
   }, [hasMounted, debouncedText, systemPrompt, setChatOptions, chatOptions]); // Included chatOptions in the dependency array
 
-  return (
-    <div>
-      <div className="justify-start gap-2 w-full rounded-sm px-2 text-xs">
-        <p>System prompt</p>
-      </div>
-
-      <div className="m-2">
-        <textarea
-          className="resize-none bg-white/20 dark:bg-card/35"
-          autoComplete="off"
-          rows={7}
-          value={text}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)}
-          name="systemPrompt"
-          placeholder="You are a helpful assistant."
-        />
-      </div>
-    </div>
-  );
+  // System prompt component is removed as per user's request to hide it from the UI
+  return null;
 }

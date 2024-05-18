@@ -6,6 +6,7 @@ import { basePath } from '@/lib/utils';
 import { useChat } from 'ai/react';
 import { toast } from 'sonner';
 import useLocalStorageState from 'use-local-storage-state';
+import { detectLanguage } from '@/utils/language-detection'; // Importing the detectLanguage function
 
 interface ChatPageProps {
   chatId: string;
@@ -51,7 +52,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     // Update systemPrompt based on language selection
     const updatedSystemPrompt = defaultSystemPrompts[chatOptions.language as LanguageCode];
     setChatOptions(prevOptions => ({ ...prevOptions, systemPrompt: updatedSystemPrompt }));
-  }, [chatOptions.language, setChatOptions]); // Removed defaultSystemPrompts from the dependency array
+  }, [chatOptions.language, setChatOptions, defaultSystemPrompts]); // Include defaultSystemPrompts in the dependency array
 
   React.useEffect(() => {
     if (chatId) {
@@ -84,11 +85,18 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
 
     setMessages([...messages]);
 
+    // Detect the language of the input and update the system prompt accordingly
+    const detectedLanguage = detectLanguage(input);
+    const updatedSystemPrompt = defaultSystemPrompts[detectedLanguage as LanguageCode];
+
     // Prepare the options object with additional body data, to pass the model.
     const requestOptions = {
       options: {
         body: {
-          chatOptions: chatOptions,
+          chatOptions: {
+            ...chatOptions,
+            systemPrompt: updatedSystemPrompt, // Update the system prompt based on detected language
+          },
         },
       },
     };
