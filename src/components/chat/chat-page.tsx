@@ -1,21 +1,17 @@
-"use client";
-
-import React from "react";
-
-import { ChatRequestOptions } from "ai";
-import { useChat } from "ai/react";
-import { toast } from "sonner";
-import useLocalStorageState from "use-local-storage-state";
-import { v4 as uuidv4 } from "uuid";
-
-import { ChatLayout } from "@/components/chat/chat-layout";
-import { ChatOptions as SystemPromptChatOptions } from "@/components/system-prompt";
-import { basePath } from "@/lib/utils";
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { ChatLayout } from '@/components/chat/chat-layout';
+import { ChatOptions } from '@/components/system-prompt';
+import { basePath } from '@/lib/utils';
+import { useChat } from 'ai/react';
+import { toast } from 'sonner';
+import useLocalStorageState from 'use-local-storage-state';
 
 interface ChatPageProps {
   chatId: string;
   setChatId: React.Dispatch<React.SetStateAction<string>>;
 }
+
 export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
   const {
     messages,
@@ -27,19 +23,19 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     stop,
     setMessages,
   } = useChat({
-    api: basePath + "/api/chat",
-    streamMode: "text",
+    api: basePath + '/api/chat',
+    streamMode: 'text',
     onError: (error) => {
-      toast.error("Something went wrong: " + error);
+      toast.error('Something went wrong: ' + error);
     },
   });
-  const [chatOptions, setChatOptions] = useLocalStorageState<SystemPromptChatOptions>("chatOptions", {
+
+  const [chatOptions, setChatOptions] = useLocalStorageState('chatOptions', {
     defaultValue: {
-      selectedModel: "",
-      systemPrompt: "",
+      systemPrompt: '',
       temperature: 0.9,
-      language: "en", // Default language set to English
-    },
+      language: 'en', // Default language set to English
+    } as ChatOptions,
   });
 
   React.useEffect(() => {
@@ -58,7 +54,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
       // Save messages to local storage
       localStorage.setItem(`chat_${chatId}`, JSON.stringify(messages));
       // Trigger the storage event to update the sidebar component
-      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event('storage'));
     }
   }, [messages, chatId, isLoading, error]);
 
@@ -74,7 +70,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     setMessages([...messages]);
 
     // Prepare the options object with additional body data, to pass the model.
-    const requestOptions: ChatRequestOptions = {
+    const requestOptions = {
       options: {
         body: {
           chatOptions: chatOptions,
@@ -87,12 +83,12 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
   };
 
   return (
-    <main className="flex h-[calc(100dvh)] flex-col items-center ">
+    <main className='flex h-[calc(100dvh)] flex-col items-center '>
       <ChatLayout
         chatId={chatId}
         setChatId={setChatId}
         chatOptions={chatOptions}
-        setChatOptions={setChatOptions}
+        setChatOptions={setChatOptions as React.Dispatch<React.SetStateAction<ChatOptions>>}
         messages={messages}
         input={input}
         handleInputChange={handleInputChange}

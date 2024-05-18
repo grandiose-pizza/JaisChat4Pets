@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { Sidebar } from "../sidebar";
 import Chat, { ChatProps, ChatTopbarProps } from "./chat";
-import { ChatOptions as SystemPromptChatOptions } from "../system-prompt";
+import { ChatOptions } from "../system-prompt";
 
 interface ChatLayoutProps {
   defaultLayout: number[] | undefined;
@@ -13,7 +13,7 @@ interface ChatLayoutProps {
   chatId: string;
 }
 
-type MergedProps = ChatLayoutProps & ChatProps & ChatTopbarProps & { chatOptions: SystemPromptChatOptions; setChatOptions: React.Dispatch<React.SetStateAction<SystemPromptChatOptions>>; };
+type MergedProps = ChatLayoutProps & ChatProps & ChatTopbarProps & { chatOptions: ChatOptions; setChatOptions: React.Dispatch<React.SetStateAction<ChatOptions>>; };
 
 export function ChatLayout({
   defaultLayout = [30, 160],

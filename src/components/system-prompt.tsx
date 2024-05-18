@@ -37,7 +37,7 @@ export default function SystemPrompt({
       setChatOptions({ ...chatOptions, systemPrompt: debouncedText });
       toast.success("System prompt updated", { duration: 1000 });
     }
-  }, [hasMounted, debouncedText, systemPrompt, setChatOptions]);
+  }, [hasMounted, debouncedText, systemPrompt, setChatOptions, chatOptions]); // Included chatOptions in the dependency array
 
   return (
     <div>
