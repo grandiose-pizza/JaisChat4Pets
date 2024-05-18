@@ -7,9 +7,9 @@ import { useDebounce } from "use-debounce";
 
 import { useHasMounted } from "@/lib/utils";
 
-// Updated ChatOptions type to include language
+// Updated ChatOptions type to include language and make systemPrompt optional
 export interface ChatOptions {
-  systemPrompt: string;
+  systemPrompt?: string; // Made systemPrompt optional to match chat-options.ts
   temperature: number;
   language: string; // Added language property
 }
