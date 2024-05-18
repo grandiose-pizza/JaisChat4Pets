@@ -107,9 +107,9 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     handleSubmit(e, requestOptions);
   };
 
-  // Detect the language of the input and update the system prompt accordingly
-  const detectedLanguage = detectLanguage(input);
-  const isResponseRTL = detectedLanguage === 'ar'; // Determine if the response should be RTL
+  // Use the language of the last message to determine the direction for the response pane
+  const lastMessageLanguage = messages.length > 0 ? detectLanguage(messages[messages.length - 1].content) : 'en';
+  const isResponseRTL = lastMessageLanguage === 'ar'; // Determine if the response should be RTL based on the last message
 
   return (
     <main className={`flex h-[calc(100dvh)] flex-col items-center ${isResponseRTL ? 'rtl' : ''}`}>
@@ -127,7 +127,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
         stop={stop}
         navCollapsedSize={10}
         defaultLayout={[30, 160]}
-        detectedLanguage={detectedLanguage} // Pass the detected language to ChatLayout
+        detectedLanguage={lastMessageLanguage} // Pass the detected language to ChatLayout
       />
     </main>
   );
