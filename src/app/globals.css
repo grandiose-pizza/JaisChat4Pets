@@ -24,6 +24,7 @@
     --input: 240 5.9% 90%; /* Keeping existing input color */
     --ring: 240 5.9% 10%; /* Keeping existing ring color */
     --radius: 1rem; /* Keeping existing radius */
+    --sidebar-bg: var(--background-gradient); /* Applying gradient to sidebar background */
   }
 
   .dark {
