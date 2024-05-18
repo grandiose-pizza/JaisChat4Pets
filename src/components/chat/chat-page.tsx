@@ -86,8 +86,9 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     // Detect the language of the input and update the system prompt accordingly
     const inputLanguage = detectLanguage(input);
     const lastMessageLanguage = messages.length > 0 ? detectLanguage(messages[messages.length - 1].content) : 'en';
-    const detectedLanguage = lastMessageLanguage === 'ar' ? 'ar' : inputLanguage;
-    const updatedSystemPrompt = defaultSystemPrompts[detectedLanguage as LanguageCode];
+    // Determine the language for the system prompt based on the input and last message
+    const systemPromptLanguage = inputLanguage === 'ar' || lastMessageLanguage === 'ar' ? 'ar' : 'en';
+    const updatedSystemPrompt = defaultSystemPrompts[systemPromptLanguage as LanguageCode];
 
     // Prepare the options object with additional body data, to pass the model.
     const requestOptions = {
