@@ -92,3 +92,7 @@
   height: 0;
   visibility: hidden;
 }
+
+.rtl {
+  direction: rtl;
+}
