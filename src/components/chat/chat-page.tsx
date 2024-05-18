@@ -89,6 +89,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     // Determine the language for the system prompt based on the input and last message
     const systemPromptLanguage = inputLanguage === 'ar' || lastMessageLanguage === 'ar' ? 'ar' : 'en';
     const updatedSystemPrompt = defaultSystemPrompts[systemPromptLanguage as LanguageCode];
+    const isResponseRTL = lastMessageLanguage === 'ar'; // Determine if the response should be RTL
 
     // Prepare the options object with additional body data, to pass the model.
     const requestOptions = {
@@ -110,7 +111,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
   const detectedLanguage = detectLanguage(input);
 
   return (
-    <main className={`flex h-[calc(100dvh)] flex-col items-center ${detectedLanguage === 'ar' ? 'rtl' : ''}`}>
+    <main className={`flex h-[calc(100dvh)] flex-col items-center ${isResponseRTL ? 'rtl' : ''}`}>
       <ChatLayout
         chatId={chatId}
         setChatId={setChatId}
