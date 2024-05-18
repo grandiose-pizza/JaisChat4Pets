@@ -109,6 +109,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
 
   // Detect the language of the input and update the system prompt accordingly
   const detectedLanguage = detectLanguage(input);
+  const isResponseRTL = detectedLanguage === 'ar'; // Determine if the response should be RTL
 
   return (
     <main className={`flex h-[calc(100dvh)] flex-col items-center ${isResponseRTL ? 'rtl' : ''}`}>
