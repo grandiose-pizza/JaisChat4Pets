@@ -6,13 +6,19 @@ import { toast } from "sonner";
 import { useDebounce } from "use-debounce";
 
 import { useHasMounted } from "@/lib/utils";
-import { ChatOptions } from "./chat/chat-options";
-import { Textarea } from "./ui/textarea";
+
+// Updated ChatOptions type to include language and make systemPrompt and temperature optional
+export interface ChatOptions {
+  systemPrompt?: string; // Made systemPrompt optional to match chat-options.ts
+  temperature?: number; // Made temperature optional to match chat-options.ts
+  language: string; // Added language property
+}
 
 export interface SystemPromptProps {
   chatOptions: ChatOptions;
   setChatOptions: Dispatch<SetStateAction<ChatOptions>>;
 }
+
 export default function SystemPrompt({
   chatOptions,
   setChatOptions,
@@ -31,7 +37,7 @@ export default function SystemPrompt({
       setChatOptions({ ...chatOptions, systemPrompt: debouncedText });
       toast.success("System prompt updated", { duration: 1000 });
     }
-  }, [hasMounted, debouncedText]);
+  }, [hasMounted, debouncedText, systemPrompt, setChatOptions, chatOptions]); // Included chatOptions in the dependency array
 
   return (
     <div>
@@ -40,12 +46,12 @@ export default function SystemPrompt({
       </div>
 
       <div className="m-2">
-        <Textarea
+        <textarea
           className="resize-none bg-white/20 dark:bg-card/35"
           autoComplete="off"
           rows={7}
           value={text}
-          onChange={(e) => setText(e.currentTarget.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)}
           name="systemPrompt"
           placeholder="You are a helpful assistant."
         />

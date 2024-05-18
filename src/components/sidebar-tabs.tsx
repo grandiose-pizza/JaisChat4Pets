@@ -10,7 +10,7 @@ import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ChatOptions } from "./chat/chat-options";
+import { ChatOptions } from "./system-prompt";
 import Settings from "./settings";
 import SidebarSkeleton from "./sidebar-skeleton";
 import {
