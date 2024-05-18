@@ -2,22 +2,30 @@
 
 import * as React from "react";
 
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme } from "next-themes";
+// Theme toggle functionality has been disabled to enforce default light theme
+// import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+// import { useTheme } from "next-themes";
 
 import { useHasMounted } from "@/lib/utils";
 import { Button } from "./ui/button";
 
 export default function SettingsThemeToggle() {
   const hasMounted = useHasMounted();
-  const { setTheme, theme } = useTheme();
+  // The theme setting functionality is commented out to hide the theme selection
+  // const { setTheme, theme } = useTheme();
 
   if (!hasMounted) {
     return null;
   }
 
-  const nextTheme = theme === "light" ? "dark" : "light";
+  // The button for toggling the theme is removed to keep the default theme as light
+  // const nextTheme = theme === "light" ? "dark" : "light";
 
+  // Return null to render nothing for the theme toggle component
+  return null;
+
+  // The following code has been commented out as part of hiding the theme selection
+  /*
   return (
     <Button
       className="justify-start gap-2 w-full"
@@ -33,4 +41,5 @@ export default function SettingsThemeToggle() {
       <p>{nextTheme === "light" ? "Light mode" : "Dark mode"}</p>
     </Button>
   );
+  */
 }

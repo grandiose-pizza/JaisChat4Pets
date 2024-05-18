@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import Image from "next/image";
 
-import OllamaLogo from "../../../public/ollama.png";
+import OllamaLogo from "../../../public/Tree-Logo-Black.png";
 import CodeDisplayBlock from "../code-display-block";
 import { Message } from "ai";
 

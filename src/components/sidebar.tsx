@@ -5,7 +5,7 @@ import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Message } from "ai/react";
 import Image from "next/image";
 
-import OllamaLogo from "../../public/ollama.png";
+import OllamaLogo from "../../public/Tree-Logo-Black.png";
 import { ChatOptions } from "./system-prompt";
 import SidebarTabs from "./sidebar-tabs";
 import Link from "next/link";

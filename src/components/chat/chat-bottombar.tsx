@@ -92,8 +92,14 @@ export default function ChatBottombar({
           </form>
         </div>
       </div>
-      <div className="relative px-2 py-2 text-center text-xs text-slate-500 md:px-[60px]">
+      <div className="flex justify-between items-center relative px-2 py-2 text-center text-xs text-slate-500 md:px-[60px]">
+        <a href="https://core42.ai/" target="_blank" rel="noopener noreferrer" className="text-left">Powered by Core42</a>
         <span>Enter to send, Shift + Enter for new line</span>
+        <div className="text-right">
+          <a href="https://arabic-gpt.ai/terms/" target="_blank" rel="noopener noreferrer">Copyright</a> |
+          <a href="https://arabic-gpt.ai/terms/" target="_blank" rel="noopener noreferrer">License</a> |
+          <a href="https://arabic-gpt.ai/terms/" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+        </div>
       </div>
     </div>
   );
