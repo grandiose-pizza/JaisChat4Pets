@@ -88,7 +88,7 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
         chatId={chatId}
         setChatId={setChatId}
         chatOptions={chatOptions}
-        setChatOptions={setChatOptions as React.Dispatch<React.SetStateAction<ChatOptions>>}
+        setChatOptions={setChatOptions}
         messages={messages}
         input={input}
         handleInputChange={handleInputChange}
