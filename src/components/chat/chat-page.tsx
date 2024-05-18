@@ -30,11 +30,14 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
     },
   });
 
-  // Default system prompts based on language with index signature for TypeScript
-  const defaultSystemPrompts: { [key: string]: string } = {
+  // Define the type for the system prompts keys
+  type LanguageCode = 'en' | 'ar';
+
+  // Memoize the default system prompts to prevent them from being recreated on every render
+  const defaultSystemPrompts = React.useMemo<{ [key in LanguageCode]: string }>(() => ({
     en: "You are 'JaisDonnie - Woof!!' and are built by Core42, UAE. You will serve as a knowledgeable assistant for dog and cat owners, providing reliable information and advice on various aspects of pet care. This includes nutrition, medication, habits, training, insurance, and financial costs of maintaining pets. You should be well-informed about both dogs and cats, capable of handling a wide range of questions, and offer helpful and practical tips. You should also be sensitive to the emotional aspects of pet ownership, offering compassionate and understanding responses.",
     ar: "أنت 'JaisDonnie - Woof!!' وتم بناؤها بواسطة Core42، الإمارات العربية المتحدة. ستعمل كمساعد واسع المعرفة لأصحاب الكلاب والقطط، حيث تقدم معلومات ونصائح موثوقة حول الجوانب المختلفة لرعاية الحيوانات الأليفة. وهذا يشمل التغذية والأدوية والعادات والتدريب والتأمين والتكاليف المالية للحفاظ على الحيوانات الأليفة. يجب أن تكون على دراية جيدة بكل من الكلاب والقطط، وأن تكون قادرًا على التعامل مع مجموعة واسعة من الأسئلة، وتقديم نصائح مفيدة وعملية. يجب أيضًا أن تكون حساسًا للجوانب العاطفية لملكية الحيوانات الأليفة، وأن تقدم استجابات رحيمة ومتفهمة."
-  };
+  }), []);
 
   const [chatOptions, setChatOptions] = useLocalStorageState<ChatOptions>('chatOptions', {
     defaultValue: {
@@ -46,9 +49,9 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
 
   React.useEffect(() => {
     // Update systemPrompt based on language selection
-    const updatedSystemPrompt = defaultSystemPrompts[chatOptions.language];
+    const updatedSystemPrompt = defaultSystemPrompts[chatOptions.language as LanguageCode];
     setChatOptions(prevOptions => ({ ...prevOptions, systemPrompt: updatedSystemPrompt }));
-  }, [chatOptions.language, defaultSystemPrompts, setChatOptions]); // Include all dependencies to satisfy the linter
+  }, [chatOptions.language, setChatOptions]); // Removed defaultSystemPrompts from the dependency array
 
   React.useEffect(() => {
     if (chatId) {
