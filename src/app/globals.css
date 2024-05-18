@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: rgb(255, 255, 255); /* Updated to match tree.com.sa pets background */
+    --background-gradient: linear-gradient(0deg, rgba(144, 238, 144, 1) 0%, rgba(255, 255, 255, 1) 100%);
     --foreground: rgb(128, 128, 128); /* Updated to match tree.com.sa pets text color */
     --card: rgb(255, 255, 255); /* Assuming card background to match main background */
     --card-foreground: rgb(128, 128, 128); /* Assuming card text to match main text color */
@@ -54,7 +54,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background-gradient text-foreground;
   }
 }
 
