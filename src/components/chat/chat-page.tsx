@@ -47,10 +47,8 @@ export default function ChatPage({ chatId, setChatId }: ChatPageProps) {
   React.useEffect(() => {
     // Update systemPrompt based on language selection
     const updatedSystemPrompt = defaultSystemPrompts[chatOptions.language];
-    if (chatOptions.systemPrompt !== updatedSystemPrompt) {
-      setChatOptions({ ...chatOptions, systemPrompt: updatedSystemPrompt });
-    }
-  }, [chatOptions.language]);
+    setChatOptions(prevOptions => ({ ...prevOptions, systemPrompt: updatedSystemPrompt }));
+  }, [chatOptions.language, defaultSystemPrompts]);
 
   React.useEffect(() => {
     if (chatId) {
