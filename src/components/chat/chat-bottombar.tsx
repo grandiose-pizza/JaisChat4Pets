@@ -57,7 +57,7 @@ export default function ChatBottombar({
               onKeyDown={handleKeyPress}
               onChange={handleInputChange}
               name="message"
-              placeholder="Woof woof!! How can I help you today?"
+              placeholder="Ask JaisChat4Pets anything..."
               className="border-input max-h-48 px-4 py-4 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 dark:focus-visible:ring-slate-500 disabled:cursor-not-allowed disabled:opacity-50 w-full border rounded-md flex items-center h-14 resize-none overflow-hidden dark:bg-card/35 pr-32"
             />
             <div className="text-xs text-muted-foreground absolute right-14 px-0 text-right">
