@@ -98,3 +98,12 @@
 .rtl {
   direction: rtl;
 }
+
+/* Custom sidebar styles to apply gradient background */
+.sidebar {
+  background: var(--sidebar-bg);
+}
+
+.dark .sidebar {
+  background: var(--sidebar-bg);
+}
