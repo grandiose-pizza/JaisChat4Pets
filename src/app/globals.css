@@ -51,10 +51,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border: var(--border);
   }
   body {
-    @apply bg-background-gradient text-foreground;
+    background: var(--background-gradient);
+    color: var(--foreground);
   }
 }
 
