@@ -6,5 +6,13 @@ import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  // Set the default theme to 'light' and disable theme switching
+  const defaultTheme = 'light';
+  const forcedTheme = defaultTheme;
+
+  return (
+    <NextThemesProvider {...props} forcedTheme={forcedTheme}>
+      {children}
+    </NextThemesProvider>
+  )
 }
