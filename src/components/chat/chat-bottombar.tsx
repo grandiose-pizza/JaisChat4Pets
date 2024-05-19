@@ -20,6 +20,7 @@ interface ChatBottombarProps {
   ) => void;
   isLoading: boolean;
   stop: () => void;
+  detectedLanguage?: "en" | "ar";
 }
 
 export default function ChatBottombar({
