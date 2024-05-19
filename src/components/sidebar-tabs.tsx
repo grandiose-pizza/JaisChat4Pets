@@ -142,19 +142,22 @@ const SidebarTabs = ({
     </div>
     <div className="sticky left-0 right-0 bottom-0 z-20  m-0 overflow-hidden">
       <Tabs.List
-        className="flex flex-wrap -mb-px py-2 text-sm font-medium text-center justify-center gap-2 bg-accent dark:bg-card"
+        className="flex flex-wrap -mb-px py-2 text-sm font-medium text-center justify-center gap-2"
         aria-label="Navigation"
+        style={{ background: 'transparent' }} // Make tablist background transparent
       >
         <Tabs.Trigger
-          className="inline-flex items-center justify-center p-0.5 rounded-sm data-[state=active]:bg-gray-200 dark:data-[state=active]:bg-gray-700 h-10 w-10"
+          className="inline-flex items-center justify-center p-0.5 rounded-sm h-10 w-10"
           value="chats"
+          style={{ background: 'transparent' }} // Make button background transparent
         >
           <ChatBubbleIcon className="w-5 h-5" />
           {/* <span className="text-xs">Chats</span> */}
         </Tabs.Trigger>
         <Tabs.Trigger
-          className="inline-flex items-center justify-center p-0.5 rounded-sm data-[state=active]:bg-gray-200 dark:data-[state=active]:bg-gray-700 h-10 w-10"
+          className="inline-flex items-center justify-center p-0.5 rounded-sm h-10 w-10"
           value="settings"
+          style={{ background: 'transparent' }} // Make button background transparent
         >
           <GearIcon className="w-5 h-5" />
           {/* <span className="text-xs">Settings</span> */}
