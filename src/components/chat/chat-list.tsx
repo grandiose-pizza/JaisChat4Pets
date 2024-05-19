@@ -9,6 +9,7 @@ import { Message } from "ai";
 interface ChatListProps {
   messages: Message[];
   isLoading: boolean;
+  detectedLanguage?: "en" | "ar";
 }
 
 const MessageToolbar = () => (
