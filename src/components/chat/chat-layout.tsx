@@ -38,8 +38,8 @@ export function ChatLayout({
 
   useEffect(() => {
     const checkScreenWidth = () => {
-      setIsMobile(window.innerWidth <= 768);
-      setIsCollapsed(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= navCollapsedSize);
+      setIsCollapsed(window.innerWidth <= navCollapsedSize);
     };
 
     // Initial check
@@ -56,7 +56,7 @@ export function ChatLayout({
 
   return (
     <div className={`relative z-0 flex h-full w-full overflow-hidden ${detectedLanguage === 'ar' ? 'rtl' : ''}`}> {/* Apply RTL styling conditionally */}
-      <div className="flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary md:w-[260px]">
+      <div className={`flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary ${isMobile ? 'w-full' : 'md:w-[260px]'}`}>
         <Sidebar
           isCollapsed={isCollapsed}
           isMobile={isMobile}
@@ -66,7 +66,7 @@ export function ChatLayout({
           setChatOptions={setChatOptions}
         />
       </div>
-      <div className="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
+      <div className={`relative flex h-full max-w-full flex-1 flex-col overflow-hidden ${isMobile ? 'w-full' : 'flex-grow'}`}>
         <Chat
           chatId={chatId}
           setChatId={setChatId}
