@@ -21,4 +21,5 @@ if docker inspect -f '{{.State.Running}}' "$CONTAINER_NAME" 2>/dev/null; then
 fi
 
 # Run the new Docker container
-docker run -d --rm -p "$PORTS" -e VLLM_URL="$VLLM_URL" -e VLLM_API_KEY="$VLLM_API_KEY" --network host --name "$CONTAINER_NAME" "$IMAGE_NAME"
+# Removed --network host for compatibility with MacOS
+docker run -d --rm -p "$PORTS" -e VLLM_URL="$VLLM_URL" -e VLLM_API_KEY="$VLLM_API_KEY" --name "$CONTAINER_NAME" "$IMAGE_NAME"
