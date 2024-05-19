@@ -110,11 +110,11 @@
 
 /* Custom styles for tablist to apply gradient background */
 .tablist {
-  background: var(--background-gradient);
+  background: transparent;
 }
 
 .dark .tablist {
-  background: var(--background-gradient);
+  background: transparent;
 }
 
 /* General panel styles for rounded corners and green shadow */
